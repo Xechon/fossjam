@@ -19,12 +19,11 @@ public class ModEntities {
     public static void init(){
         //EntityRegistry.registerModEntity(registryname, entityClass, entityName, id, modObj, trackingRange, updateFrequency, sendsVelUpdates, eggPrime, eggSec);
         //(MRL, Class, String, int, Obj, int, int, bool, int, int)
-        EntityRegistry.registerModEntity(new ResourceLocation(ExampleMod.MODID, "smart_golem"), EntitySmartGolem.class, "SmartGolem", 1, ExampleMod.instance, 16, 3, true, 0x000000, 0x000000);
+        //EntityRegistry.registerModEntity(new ResourceLocation(ExampleMod.MODID, "smart_golem"), EntitySmartGolem.class, "SmartGolem", 1, ExampleMod.instance, 16, 3, true, 0x000000, 0x000000);
     }
 
     @SideOnly(Side.CLIENT)
     public static void initModels() {
         RenderingRegistry.registerEntityRenderingHandler(EntitySmartGolem.class, RenderSmartGolem.FACTORY);
-
     }
 }

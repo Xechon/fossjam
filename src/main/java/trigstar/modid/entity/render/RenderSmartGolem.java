@@ -2,6 +2,7 @@ package trigstar.modid.entity.render;
 
 import net.minecraft.client.model.ModelIronGolem;
 import net.minecraft.client.renderer.entity.Render;
+import net.minecraft.client.renderer.entity.RenderIronGolem;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
