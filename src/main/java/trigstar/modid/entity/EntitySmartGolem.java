@@ -10,7 +10,7 @@ import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.world.World;
 import trigstar.modid.entity.ai.EntityAIObserve;
 
-public class EntitySmartGolem extends EntityGolem {
+public class EntitySmartGolem extends EntityIronGolem {
     private static final DataParameter<Boolean> ACTIVE = EntityDataManager.createKey(EntitySmartGolem.class, DataSerializers.BOOLEAN);
 
     public EntitySmartGolem(World worldIn) {
