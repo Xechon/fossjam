@@ -1,0 +1,9 @@
+Leaf Nodes are any EntityAIBase
+Branch Nodes have a list of possible nodes to chose from
+Decorator Nodes only have a single child
+The Behavior tree has only one child
+
+Farming:
+- Tasking; Break, Place, Store. Needs to know what crops are and what can be planted
+- Filtering; Don't break crops that aren't fully grown, right click on these crops instead, only break in this pattern/area
+- Scheduling; Check back and perform task every...
