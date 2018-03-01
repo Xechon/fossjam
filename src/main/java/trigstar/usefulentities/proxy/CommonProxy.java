@@ -1,11 +1,10 @@
-package trigstar.modid.proxy;
+package trigstar.usefulentities.proxy;
 
 import net.minecraftforge.fml.common.Mod;
-import trigstar.modid.entity.ModEntities;
 
 @Mod.EventBusSubscriber
 public class CommonProxy {
-    public static final String proxyPath = "trigstar.modid.proxy.CommonProxy";
+    public static final String proxyPath = "trigstar.usefulentities.proxy.CommonProxy";
 
     public void preInit(){}
 

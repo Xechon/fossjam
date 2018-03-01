@@ -1,14 +1,14 @@
 [
 {
-  "modid": "examplemod",
-  "name": "Example Mod",
-  "description": "Example placeholder mod.",
+  "modid": "usefulentities",
+  "name": "Useful Entities",
+  "description": "Mod about some useful entities.",
   "version": "${version}",
   "mcversion": "${mcversion}",
   "url": "",
   "updateUrl": "",
-  "authorList": ["ExampleDude"],
-  "credits": "The Forge and FML guys, for making this example",
+  "authorList": ["the trigstar", "Xechon"],
+  "credits": "The Forge and FML guys, for making all this possible",
   "logoFile": "",
   "screenshots": [],
   "dependencies": []

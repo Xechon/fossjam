@@ -1,4 +1,4 @@
-package trigstar.modid.btree;
+package trigstar.usefulentities.btree;
 
 import net.minecraft.entity.ai.EntityAIBase;
 

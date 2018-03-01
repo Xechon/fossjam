@@ -1,23 +1,22 @@
-package trigstar.modid.entity.render;
+package trigstar.usefulentities.entity.render;
 
 import net.minecraft.client.model.ModelIronGolem;
 import net.minecraft.client.renderer.entity.Render;
-import net.minecraft.client.renderer.entity.RenderIronGolem;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import trigstar.modid.ExampleMod;
-import trigstar.modid.entity.EntitySmartGolem;
+import trigstar.usefulentities.UsefulEntities;
+import trigstar.usefulentities.entity.EntitySmartGolem;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 @SideOnly(Side.CLIENT)
 public class RenderSmartGolem extends RenderLiving<EntitySmartGolem> {
-    private ResourceLocation texture = new ResourceLocation(ExampleMod.MODID, "textures/entity/smart_golem.png");
+    private ResourceLocation texture = new ResourceLocation(UsefulEntities.MODID, "textures/entity/smart_golem.png");
 
     public static final Factory FACTORY = new Factory();
 

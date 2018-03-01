@@ -1,4 +1,4 @@
-package trigstar.modid.entity.ai;
+package trigstar.usefulentities.entity.ai;
 
 import net.minecraft.entity.ai.EntityAIBase;
 
