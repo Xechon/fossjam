@@ -1,9 +1,14 @@
 package trigstar.usefulentities.btree.select;
 
+import trigstar.usefulentities.btree.BehaviorTree;
 import trigstar.usefulentities.btree.BranchNode;
-import trigstar.modid.btree.Node;
+import trigstar.usefulentities.btree.Node;
 
 public class SelectorAll extends BranchNode {
+
+    public SelectorAll(BehaviorTree tree) {
+        super(tree);
+    }
 
     @Override
     public void startExecuting() {

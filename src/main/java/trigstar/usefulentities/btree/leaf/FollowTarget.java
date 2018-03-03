@@ -2,8 +2,9 @@ package trigstar.usefulentities.btree.leaf;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
+import trigstar.usefulentities.btree.BehaviorTree;
 import trigstar.usefulentities.btree.ITargetAction;
-import trigstar.modid.btree.Node;
+import trigstar.usefulentities.btree.Node;
 
 public class FollowTarget extends Node<EntityLiving> implements ITargetAction {
     private Entity target;
