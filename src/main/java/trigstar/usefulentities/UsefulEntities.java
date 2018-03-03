@@ -1,10 +1,12 @@
 package trigstar.usefulentities;
 
+import net.minecraft.entity.passive.EntityVillager;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.registry.VillagerRegistry;
 import org.apache.logging.log4j.Logger;
 import trigstar.usefulentities.proxy.ClientProxy;
 import trigstar.usefulentities.proxy.CommonProxy;
