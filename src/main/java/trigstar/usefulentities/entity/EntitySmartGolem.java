@@ -30,7 +30,7 @@ public class EntitySmartGolem extends EntityIronGolem {
     @Override
     protected void initEntityAI() {
         super.initEntityAI();
-        this.tasks.addTask(2, new EntityAIObserve());
+        //this.tasks.addTask(2, new EntityAIObserve());
     }
 
 

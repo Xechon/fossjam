@@ -19,12 +19,6 @@ import trigstar.usefulentities.entity.render.RenderSmartGolem;
 @Mod.EventBusSubscriber
 public class ModEntities {
 
-    public static void init(){
-        //EntityRegistry.registerModEntity(registryname, entityClass, entityName, id, modObj, trackingRange, updateFrequency, sendsVelUpdates, eggPrime, eggSec);
-        //(MRL, Class, String, int, Obj, int, int, bool, int, int)
-        //EntityRegistry.registerModEntity(new ResourceLocation(ExampleMod.MODID, "smart_golem"), EntitySmartGolem.class, "SmartGolem", 1, ExampleMod.instance, 16, 3, true, 0x000000, 0x000000);
-    }
-
     @SideOnly(Side.CLIENT)
     public static void initModels() {
         RenderingRegistry.registerEntityRenderingHandler(EntitySmartGolem.class, RenderSmartGolem.FACTORY);
@@ -37,7 +31,6 @@ public class ModEntities {
         builder.entity(EntitySmartGolem.class).name("smart_golem").egg(0x000000, 0x000000)
                 .id(new ResourceLocation(UsefulEntities.MODID, "smart_golem"), 1)
                 .factory(EntitySmartGolem::new).tracker(16, 3, true);
-        //registry.register(new EntityEntry(EntitySmartGolem.class, "smart_golem"));
         registry.register(builder.build());
     }
 }
