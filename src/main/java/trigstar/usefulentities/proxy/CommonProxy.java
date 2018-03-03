@@ -12,5 +12,7 @@ public class CommonProxy {
         //ModEntities.init();
     }
 
+    public void postInit(){}
+
 
 }

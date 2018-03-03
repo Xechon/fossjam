@@ -8,6 +8,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import org.apache.logging.log4j.Logger;
 import trigstar.usefulentities.proxy.ClientProxy;
 import trigstar.usefulentities.proxy.CommonProxy;
+import trigstar.usefulentities.proxy.ServerProxy;
 
 @Mod(modid = UsefulEntities.MODID, name = UsefulEntities.NAME, version = UsefulEntities.VERSION)
 public class UsefulEntities
@@ -18,7 +19,9 @@ public class UsefulEntities
 
     private static Logger logger;
 
-    @SidedProxy(clientSide = ClientProxy.proxyPath, serverSide = CommonProxy.proxyPath) public static CommonProxy proxy;
+    @SidedProxy(clientSide = ClientProxy.proxyPath, serverSide = ServerProxy.proxyPath)
+    public static CommonProxy proxy;
+
     @Mod.Instance public static UsefulEntities instance;
 
     @EventHandler
