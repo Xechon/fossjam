@@ -2,12 +2,13 @@ package trigstar.usefulentities.btree;
 
 import net.minecraft.entity.ai.EntityAIBase;
 
-public class BehaviorTree<T> extends EntityAIBase {
-    private Node root;
+public class BehaviorTree<T extends Blackboard> extends EntityAIBase {
+    private Node trunk;
     public T blackboard;
 
-    public BehaviorTree(T blackboard) {
+    public BehaviorTree(T blackboard, Node trunk) {
         this.blackboard = blackboard;
+        this.trunk = trunk;
     }
 
     @Override
@@ -17,21 +18,21 @@ public class BehaviorTree<T> extends EntityAIBase {
 
     @Override
     public boolean shouldContinueExecuting() {
-        return root.shouldContinueExecuting();
+        return true; // false if?
     }
 
     @Override
     public void startExecuting() {
-        root.startExecuting();
+        trunk.update();
     }
 
     @Override
     public void resetTask() {
-        root.resetTask();
+
     }
 
     @Override
     public void updateTask() {
-        root.updateTask();
+        trunk.update();
     }
 }

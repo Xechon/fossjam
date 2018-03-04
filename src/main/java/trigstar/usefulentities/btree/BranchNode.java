@@ -1,14 +1,11 @@
 package trigstar.usefulentities.btree;
 
-public class BranchNode extends Node {
-    protected Node[] nodes;
+import java.util.ArrayList;
 
-    public BranchNode(BehaviorTree tree) {
-        super(tree);
-    }
+public abstract class BranchNode extends Node {
+    protected ArrayList<Node> nodes;
 
-    @Override
-    public boolean shouldExecute() {
-        return true;
+    public BranchNode(Blackboard blackboard) {
+        super(blackboard);
     }
 }

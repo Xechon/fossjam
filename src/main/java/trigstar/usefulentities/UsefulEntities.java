@@ -19,7 +19,7 @@ public class UsefulEntities
     public static final String NAME = "UsefulEntities";
     public static final String VERSION = "0.0.1";
 
-    private static Logger logger;
+    public static Logger logger;
 
     @SidedProxy(clientSide = ClientProxy.proxyPath, serverSide = ServerProxy.proxyPath)
     public static CommonProxy proxy;

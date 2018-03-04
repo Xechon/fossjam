@@ -2,40 +2,23 @@ package trigstar.usefulentities.btree.leaf;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
-import trigstar.usefulentities.btree.BehaviorTree;
-import trigstar.usefulentities.btree.ITargetAction;
-import trigstar.usefulentities.btree.Node;
+import trigstar.usefulentities.btree.*;
 
-public class FollowTarget extends Node<EntityLiving> implements ITargetAction {
+public class FollowTarget extends Node implements ITargetAction {
     private Entity target;
 
-    public FollowTarget(BehaviorTree<EntityLiving> tree) {
-        super(tree);
+    public FollowTarget(Blackboard blackboard) {
+        super(blackboard);
     }
 
     @Override
-    public boolean shouldExecute() {
-        return target != null;
+    public void setTarget(Entity entity) {
+        target = entity;
     }
 
     @Override
-    public boolean shouldContinueExecuting() {
-        return super.shouldContinueExecuting();
-    }
-
-    @Override
-    public void startExecuting() {
-        super.startExecuting();
-    }
-
-    @Override
-    public void resetTask() {
-        super.resetTask();
-    }
-
-    @Override
-    public void updateTask() {
-        EntityLiving entity = root.blackboard;
+    public Result update() {
+        EntityLiving entity = blackboard.entity;
         entity.getLookHelper().setLookPositionWithEntity(target, (float)(entity.getHorizontalFaceSpeed() + 20), (float)entity.getVerticalFaceSpeed());
 
         if (entity.getDistanceSq(this.target) < 6.25D)
@@ -44,12 +27,8 @@ public class FollowTarget extends Node<EntityLiving> implements ITargetAction {
         }
         else
         {
-            entity.getNavigator().tryMoveToEntityLiving(this.target, 1);
+            entity.getNavigator().tryMoveToEntityLiving(this.target, .5);
         }
-    }
-
-    @Override
-    public void setTarget(Entity entity) {
-        target = entity;
+        return Result.SUCCESS;
     }
 }
