@@ -12,7 +12,7 @@ import java.util.HashMap;
 public class PrefabBehaviorTree {
     static HashMap<String, Node> prefabs;
 
-    private PrefabBehaviorTree(){
+    static {
         prefabs = new HashMap<>();
         prefabs.put("Harvest", new DecoratorDelay(10,
                         new SelectorPhase(new Tuple<>("FIND",

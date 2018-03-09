@@ -4,6 +4,7 @@ import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.EntityAITasks;
+import net.minecraft.entity.ai.EntityAIVillagerMate;
 import net.minecraft.entity.passive.EntityVillager;
 import trigstar.usefulentities.btree.BehaviorTree;
 import trigstar.usefulentities.btree.Blackboard;
@@ -34,9 +35,9 @@ public class VillagerJobsScreen extends GuiScreen{
     }
 
     protected BehaviorTree findBehaviorTree(EntityVillager villager) {
-        Iterator i = villager.tasks.taskEntries.iterator();
+        Iterator<EntityAITasks.EntityAITaskEntry> i = villager.tasks.taskEntries.iterator();
         while(i.hasNext()){
-            Object entry = i.next();
+            EntityAIBase entry = i.next().action;
             if(entry instanceof BehaviorTree) {
                 return ((BehaviorTree)entry);
             }
@@ -48,8 +49,8 @@ public class VillagerJobsScreen extends GuiScreen{
     protected void actionPerformed(GuiButton button)
     {
         if(villager != null) {
-            //BehaviorTree tree = findBehaviorTree(villager);
-            //if(tree != null) {
+            BehaviorTree tree = findBehaviorTree(villager);
+            if(tree != null) {
                 switch (button.displayString) {
                     case "Harvest":
                         System.out.println("t1 was pressed");
@@ -61,13 +62,12 @@ public class VillagerJobsScreen extends GuiScreen{
                         System.out.println("t3 was pressed");
                         break;
                 }
-                /*Node newBehavior = PrefabBehaviorTree.get(button.displayString, tree.blackboard);
-                System.out.println("Switching Behavior to: " + button.displayString);
+                Node newBehavior = PrefabBehaviorTree.get(button.displayString, tree.blackboard);
                 if(newBehavior != null) {
-
+                    System.out.println("Switching Behavior to: " + button.displayString);
                     tree.blackboard.tempRoot = newBehavior;
                 }
-            }*/
+            }
         }
     }
 }
