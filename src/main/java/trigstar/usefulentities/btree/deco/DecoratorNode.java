@@ -4,11 +4,17 @@ import trigstar.usefulentities.btree.Blackboard;
 import trigstar.usefulentities.btree.INode;
 import trigstar.usefulentities.btree.Node;
 
-public abstract class DecoratorNode extends Node{
-    INode node;
+public abstract class DecoratorNode<T extends Blackboard> extends Node<T>{
+    Node node;
 
-    public DecoratorNode(Blackboard blackboard, INode node) {
-        super(blackboard);
+    public DecoratorNode(Node node){
         this.node = node;
+        this.node.setBlackboard(blackboard);
+    }
+
+    @Override
+    public void setBlackboard(T blackboard) {
+        super.setBlackboard(blackboard);
+        node.setBlackboard(blackboard);
     }
 }

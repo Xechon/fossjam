@@ -1,14 +1,11 @@
 package trigstar.usefulentities.btree.seq;
 
-import trigstar.usefulentities.btree.Blackboard;
-import trigstar.usefulentities.btree.BranchNode;
-import trigstar.usefulentities.btree.Node;
-import trigstar.usefulentities.btree.Result;
+import trigstar.usefulentities.btree.*;
 
 public class SequenceAll extends BranchNode {
 
-    public SequenceAll(Blackboard blackboard) {
-        super(blackboard);
+    public SequenceAll(Node... nodes) {
+        super(nodes);
     }
 
     @Override

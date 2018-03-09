@@ -1,56 +1,59 @@
 package trigstar.usefulentities.entity.event;
 
-import net.minecraft.block.BlockCrops;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.ai.EntityAIBase;
+import net.minecraft.entity.ai.EntityAIHarvestFarmland;
 import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.inventory.InventoryBasic;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.Tuple;
 import net.minecraftforge.event.entity.living.LivingSpawnEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.eventhandler.Event;
-import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import trigstar.usefulentities.btree.BehaviorTree;
 import trigstar.usefulentities.btree.Blackboard;
-import trigstar.usefulentities.btree.TaskArea;
 import trigstar.usefulentities.btree.deco.*;
-import trigstar.usefulentities.btree.leaf.BreakBlock;
-import trigstar.usefulentities.btree.leaf.FollowTarget;
-import trigstar.usefulentities.btree.leaf.MoveTo;
-import trigstar.usefulentities.btree.leaf.PlaceBlock;
-import trigstar.usefulentities.btree.select.SelectBlock;
-import trigstar.usefulentities.btree.select.SelectorNearestPlayer;
-import trigstar.usefulentities.btree.seq.SequenceBlockPos;
+import trigstar.usefulentities.btree.leaf.*;
+import trigstar.usefulentities.btree.select.SelectorPhase;
+import trigstar.usefulentities.btree.seq.SequenceAll;
+import trigstar.usefulentities.btree.seq.SequenceUntilFail;
 import trigstar.usefulentities.client.gui.VillagerJobsScreen;
-
 
 @Mod.EventBusSubscriber
 public class InjectAIHandler {
+    static EntityAIBase harvestAction;
+
     @SubscribeEvent public static void onEntitySpawn(LivingSpawnEvent event) {
         if(event.getEntity() instanceof EntityVillager) {
             EntityVillager villager = (EntityVillager) event.getEntity();
-            Blackboard blackboard = new Blackboard(villager);
-            //select farmland, move to farmland, break crops, place seeds, till dirt
-            BehaviorTree<Blackboard> farmer = new BehaviorTree<>(blackboard,
-                    new SelectBlock(blackboard, Blocks.FARMLAND, new TaskArea(BlockPos.ORIGIN, 32),
-                        new DecoratorBlockOffset(blackboard, 0, 1, 0,
-                        new DecoratorIsCropMaxAge(blackboard,
-                        new SequenceBlockPos(blackboard,
-                            new MoveTo(blackboard),
-                            new BreakBlock(blackboard),
-                            new PlaceBlock(blackboard, Blocks.WHEAT))))));
-            BehaviorTree<Blackboard> tree =  new BehaviorTree<>(blackboard,
-                    new DecoratorDebug(blackboard,
-                    new SelectorNearestPlayer(blackboard,
-                            new DecoratorHasHeld(blackboard, Items.EMERALD,
-                    new FollowTarget(blackboard)), 32d)));
-            villager.tasks.addTask(4, farmer);
+
+            villager.tasks.taskEntries.forEach(e -> {
+                if(e.action instanceof EntityAIHarvestFarmland){
+                    harvestAction = e.action;
+                }
+            });
+            villager.tasks.removeTask(harvestAction);
+            Blackboard blackboard = new Blackboard(villager, new InventoryBasic("villager", true, 3));
+            blackboard.phase = "FIND";
+
+            BehaviorTree<Blackboard> acceptTask = new BehaviorTree<>(blackboard,
+                    new SequenceAll(
+                            new FindNearestPlayer(32),
+                            new DecoratorHasHeld(Items.EMERALD,
+                                    new FollowTarget()),
+                            new SequenceUntilFail(
+                                    new FindBlock(Blocks.CHEST),
+                                    new PickupFromInventory(new ItemStack(Items.EMERALD,1)),
+                                    new SetNewTask()
+                            )
+                    ));
+
+            villager.tasks.addTask(4, acceptTask);
         }
     }
 

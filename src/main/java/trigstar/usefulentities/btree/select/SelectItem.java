@@ -6,10 +6,6 @@ import trigstar.usefulentities.btree.Result;
 
 public class SelectItem extends Node {
 
-    public SelectItem(Blackboard blackboard) {
-        super(blackboard);
-    }
-
     @Override
     public Result update() {
         return null;

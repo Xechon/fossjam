@@ -7,8 +7,8 @@ import trigstar.usefulentities.btree.Result;
 
 public class DecoratorDebug extends DecoratorNode {
 
-    public DecoratorDebug(Blackboard blackboard, Node node) {
-        super(blackboard, node);
+    public DecoratorDebug(Node node) {
+        super(node);
     }
 
     @Override

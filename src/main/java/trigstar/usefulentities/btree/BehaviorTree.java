@@ -3,12 +3,13 @@ package trigstar.usefulentities.btree;
 import net.minecraft.entity.ai.EntityAIBase;
 
 public class BehaviorTree<T extends Blackboard> extends EntityAIBase {
-    private Node trunk;
+    private Node<T> trunk;
     public T blackboard;
 
-    public BehaviorTree(T blackboard, Node trunk) {
+    public BehaviorTree(T blackboard, Node<T> trunk) {
         this.blackboard = blackboard;
         this.trunk = trunk;
+        trunk.setBlackboard(blackboard);
     }
 
     @Override
@@ -33,6 +34,19 @@ public class BehaviorTree<T extends Blackboard> extends EntityAIBase {
 
     @Override
     public void updateTask() {
+        if(blackboard.shouldSwap){
+            if(blackboard.tempRoot != null) {
+                swapTrunk();
+                blackboard.shouldSwap = false;
+            }
+        }
         trunk.update();
+    }
+
+    public void swapTrunk(){
+        Node temp = blackboard.tempRoot;
+        blackboard.tempRoot = trunk;
+        trunk = temp;
+
     }
 }
