@@ -18,7 +18,7 @@ public class FollowTarget extends Node {
         }
         else
         {
-            entity.getNavigator().tryMoveToEntityLiving(target, .5);
+            entity.getNavigator().tryMoveToEntityLiving(target, 1);
         }
         return Result.SUCCESS;
     }

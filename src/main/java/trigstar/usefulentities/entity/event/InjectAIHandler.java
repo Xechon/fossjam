@@ -1,6 +1,8 @@
 package trigstar.usefulentities.entity.event;
 
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityCreature;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.EntityAIHarvestFarmland;
 import net.minecraft.entity.passive.EntityVillager;
@@ -38,22 +40,9 @@ public class InjectAIHandler {
                 }
             });
             villager.tasks.removeTask(harvestAction);
-            Blackboard blackboard = new Blackboard(villager, new InventoryBasic("villager", true, 3));
-            blackboard.phase = "FIND";
 
-            BehaviorTree<Blackboard> acceptTask = new BehaviorTree<>(blackboard,
-                    new SequenceAll(
-                            new FindNearestPlayer(32),
-                            new DecoratorHasHeld(Items.EMERALD,
-                                    new FollowTarget()),
-                            new SequenceUntilFail(
-                                    new FindBlock(Blocks.CHEST),
-                                    new PickupFromInventory(new ItemStack(Items.EMERALD,1)),
-                                    new SetNewTask()
-                            )
-                    ));
 
-            villager.tasks.addTask(4, acceptTask);
+
         }
     }
 
@@ -72,6 +61,22 @@ public class InjectAIHandler {
                 if (itemStack.getItem() == Items.EMERALD) {
                     //we've right clicked on a villager with an emerald in either our offhand or mainhand
                     //open jobs gui
+                    Blackboard blackboard = new Blackboard((EntityVillager) target, new InventoryBasic("villager", true, 3));
+                    blackboard.phase = "FIND";
+
+                    BehaviorTree<Blackboard> acceptTask = new BehaviorTree<>(blackboard,
+                            new SequenceAll(
+                                    new FindNearestPlayer(16),
+                                    new DecoratorHasHeld(Items.EMERALD,
+                                            new FollowTarget()),
+                                    new SequenceUntilFail(
+                                            new FindBlock(Blocks.CHEST),
+                                            new PickupFromInventory(new ItemStack(Items.EMERALD,1)),
+                                            new SetNewTask()
+                                    )
+                            ));
+                    ((EntityVillager)target).tasks.addTask(4, acceptTask);
+
                     FMLClientHandler.instance().showGuiScreen(new VillagerJobsScreen((EntityVillager) target));
                     if(event.isCancelable()) {
                         event.setCanceled(true);

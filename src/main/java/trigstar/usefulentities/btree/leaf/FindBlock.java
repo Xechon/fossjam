@@ -19,8 +19,11 @@ public class FindBlock extends Node {
 
     @Override
     public Result update() {
-        BlockPos blockPos = blackboard.entity.getPosition();
-        int range = 32;
+        BlockPos blockPos;
+        if(blackboard.jobInventory != null) {
+            blockPos = blackboard.jobInventory;
+        }else blockPos = blackboard.entity.getPosition();
+        int range = 16;
 
         for (int k = 0; k <= 1; k = k > 0 ? -k : 1 - k)
         {

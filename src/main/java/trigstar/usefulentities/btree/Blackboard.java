@@ -8,7 +8,8 @@ import net.minecraft.util.math.BlockPos;
 
 public class Blackboard {
     public EntityLiving entity;
-    public BlockPos targetBlock = BlockPos.ORIGIN;
+    public BlockPos targetBlock;
+    public BlockPos jobInventory;
     public Entity targetEntity = null;
     public InventoryBasic inventory;
     public Node tempRoot;
