@@ -13,9 +13,9 @@ public class DepositIntoInventory extends Node {
     public Result update() {
         //find block with inventory
         World world = blackboard.entity.world;
-        TileEntity te = world.getTileEntity(blackboard.targetBlock);
+        TileEntity te = world.getTileEntity(blackboard.jobInventory);
         if(te != null && te instanceof IInventory) {
-            IInventory inventory = ((IInventory) world.getTileEntity(blackboard.targetBlock));
+            IInventory inventory = ((IInventory) te);
             InventoryBasic entityInventory = blackboard.inventory;
             for (int i = 0; i < entityInventory.getSizeInventory(); i++) {
                 for (int j = 0; j < inventory.getSizeInventory(); j++) {

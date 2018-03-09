@@ -2,6 +2,7 @@ package trigstar.usefulentities.btree.leaf;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import trigstar.usefulentities.btree.Node;
@@ -49,6 +50,6 @@ public class FindBlock extends Node {
 
     boolean shouldSelect(World world, BlockPos blockPos){
         IBlockState state = world.getBlockState(blockPos);
-        return types.contains(state.getBlock());
+        return types.contains(state.getBlock()) && world.getBlockState(blockPos.up()).getBlock() == Blocks.AIR;
     }
 }

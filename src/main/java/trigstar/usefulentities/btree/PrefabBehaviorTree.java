@@ -29,11 +29,11 @@ public class PrefabBehaviorTree {
                                         new SetPhase("COLLECT")
                                 )), new Tuple<>("COLLECT",
                                 new SequenceUntilFail(
-                                        new PickupItemEntity(),
                                         new PlaceBlock(Blocks.WHEAT),
                                         new SetPhase("FIND"))
                         ))
                 ),
+                new PickupItemEntity(),
                 new DecoratorTimer(1200, new SequenceAll(new DepositIntoInventory(),new SetNewTask()))
         ));
 
